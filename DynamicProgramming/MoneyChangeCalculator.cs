@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DynamicProgramming
 {
@@ -21,11 +20,11 @@ namespace DynamicProgramming
 
             var memoizeHash = new Dictionary<int, List<int>>()
             {
-                [1] = new List<int>(1),
-                [2] = new List<int>(2),
-                [5] = new List<int>(5),
-                [10] = new List<int>(10),
-                [20] = new List<int>(20)
+                [1] = new [] {1}.ToList(),
+                [2] = new[] { 2 }.ToList(),
+                [5] = new[] { 5 }.ToList(),
+                [10] = new[] { 10 }.ToList(),
+                [20] = new[] { 20 }.ToList()
             };
 
             DynamicIterationIndex += 5;
@@ -77,7 +76,7 @@ namespace DynamicProgramming
 
             foreach (var validChange in validChanges)
             {
-                var coins = ComputeRecursive(number - validChange);
+                var coins = ComputeDynamic(number - validChange, memoizeHash).ToList();
                 coins.Add(validChange);
 
                 if (!leastCoins.Any())
